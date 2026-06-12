@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elakkiya Portfolio</title>
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+html{scroll-behavior:smooth}
+body{background:#07162d;color:white}
+.header{position:fixed;top:0;left:0;width:100%;padding:20px 10%;display:flex;justify-content:space-between;align-items:center;background:#051129;z-index:100}
+.logo{font-size:30px;color:white;text-decoration:none;font-weight:700}
+.navbar a{font-size:18px;color:white;text-decoration:none;margin-left:25px}
+.navbar a:hover{color:#0ef}
+
+.home,.about{display:flex;justify-content:space-between;align-items:center;min-height:100vh;padding:100px 10%}
+.home{background:linear-gradient(90deg,#041b2d,#051f36)}
+.home-content,.about-content{max-width:600px}
+.home-content h1{font-size:60px;margin:10px 0}
+.home-content h3,.about-content h3{font-size:30px}
+.home-content h3 span,.heading span,.about-content h2 span{color:#0ef}
+.home-content p,.about-content p{margin:20px 0;line-height:30px}
+
+.social-media a{display:inline-flex;justify-content:center;align-items:center;width:45px;height:45px;border:2px solid #0ef;border-radius:50%;font-size:22px;color:#0ef;text-decoration:none;margin:20px 15px 30px 0}
+.social-media a:hover{background:#0ef;color:#081b29}
+
+.btn{display:inline-block;padding:12px 28px;background:#0ef;border-radius:40px;color:#081b29;text-decoration:none;font-weight:600}
+
+.home-img,
+.about-img{
+    position:relative;
+    width:350px;
+    height:350px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.glow,
+.profile-circle{
+    position:absolute;
+    width:320px;
+    height:320px;
+    border-radius:10%;
+}
+
+.glow{
+    background:conic-gradient(#00f7ff,#ff00ff,#00f7ff);
+    filter:blur(15px);
+}
+
+.profile-circle{
+    padding:6px;
+    background:linear-gradient(45deg,#00ffff,#00ff99,#ff00ff,#00ffff);
+}
+
+.home-img img,
+.profile-circle img{
+    width:100%;
+    height:100%;
+    border-radius:10%;
+    object-fit:cover;
+}
+.home-img img{
+    
+    width:300px;
+    height:300px;
+
+    border-radius:10%;
+    object-fit:cover;
+    border:8px solid white;
+    z-index:2;
+}
+
+.profile-circle img{
+    width:100%;
+    height:100%;
+    border-radius:10%;
+    object-fit:cover;
+    border:8px solid #081b29;
+}
+.about-content h2,.heading{font-size:50px}
+
+/* Skills */
+.skills{padding:100px 10%;background:#081b29}
+.heading{text-align:center;margin-bottom:50px}
+.skills-container{display:flex;gap:50px;flex-wrap:wrap}
+.technical,.professional{flex:1;min-width:300px}
+.technical h3,.professional h3{text-align:center;margin-bottom:30px}
+.bar{margin-bottom:20px}
+.progress{height:10px;background:#1c2b45;border-radius:20px;overflow:hidden}
+.progress div{height:100%;background:#0ef}
+.professional-circles{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.skill{text-align:center}
+
+@keyframes rotate{100%{transform:rotate(360deg)}}
+
+@media(max-width:768px){
+.header{flex-direction:column}
+.home,.about{flex-direction:column;text-align:center;padding-top:160px}
+.home-img,.about-img,.glow,.profile-circle{width:280px;height:280px}
+.home-img img{width:240px;height:240px}
+.skills-container{flex-direction:column}
+.professional-circles{grid-template-columns:1fr}
+}
+/* Projects */
+.projects{
+    padding:100px 10%;
+    background:#07162d;
+}
+.project-container{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+gap:30px;
+}
+
+.project-card{
+background:#0d223d;
+padding:25px;
+border-radius:20px;
+transition:.5s;
+border:1px solid rgba(255,255,255,.1);
+}
+
+.project-card:hover{
+transform:translateY(-10px);
+box-shadow:0 0 25px #0ef;
+}
+
+.project-gallery{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+margin-bottom:20px;
+}
+
+.project-gallery img{
+width:100%;
+height:180px;
+object-fit:cover;
+border-radius:12px;
+transition:.4s;
+}
+
+.project-gallery img:hover{
+transform:scale(1.05);
+}
+
+.project-card h3{
+color:#0ef;
+margin-bottom:10px;
+}
+
+.project-card p{
+line-height:1.8;
+color:#ddd;
+margin-bottom:15px;
+}
+
+.tech-stack{
+display:flex;
+flex-wrap:wrap;
+gap:8px;
+margin-bottom:15px;
+}
+
+.tech-stack span{
+background:#0ef;
+color:#081b29;
+padding:5px 12px;
+border-radius:20px;
+font-size:12px;
+font-weight:600;
+}
+
+.project-btn{
+display:inline-block;
+padding:10px 20px;
+background:#0ef;
+color:#081b29;
+text-decoration:none;
+border-radius:30px;
+font-weight:600;
+}
+
+.project-btn:hover{
+background:white;
+}
+
+.project-layer h3{
+    font-size:24px;
+    margin-bottom:10px;
+    color:#081b29;
+    font-weight:700;
+}
+
+.card h3{
+margin-top:10px;
+color:#00e5ff;
+}
+
+.project-layer p{
+    font-size:14px;
+    line-height:1.6;
+    color:#081b29;
+    font-weight:500;
+}
+
+/* Certifications */
+
+.certifications{
+    padding:100px 10%;
+    background:#081b29;
+}
+
+.cert-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+    margin-top:40px;
+}
+
+.cert-box{
+    background:#0d223d;
+    border-radius:20px;
+    overflow:hidden;
+    text-align:center;
+    padding:20px;
+    transition:.4s;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    min-height:350px;
+}
+
+.cert-box:hover{
+    transform:translateY(-10px);
+    box-shadow:0 0 25px #0ef;
+}
+
+.cert-box img{
+    width:100%;
+    height:180px;
+    object-fit:cover;
+    border-radius:12px;
+    margin-bottom:15px;
+}
+
+.cert-box h3{
+    color:#0ef;
+    margin-bottom:10px;
+    font-size:20px;
+}
+
+.cert-box p{
+    color:#ddd;
+    font-size:15px;
+}
+/* Contact */
+.contact{
+    padding:100px 10%;
+    background:#07162d;
+}
+
+.contact form{
+    max-width:700px;
+    margin:auto;
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.contact input,
+.contact textarea{
+    width:100%;
+    padding:15px;
+    background:#0d223d;
+    border:none;
+    border-radius:10px;
+    color:white;
+    outline:none;
+}
+
+.contact button{
+    border:none;
+    cursor:pointer;
+}
+
+/* Footer */
+.footer{
+    text-align:center;
+    padding:20px;
+    background:#051129;
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+<a href="#" class="logo">Portfolio.</a>
+<nav class="navbar">
+<a href="#home">Home</a>
+<a href="#about">About</a>
+<a href="#skills">Skills</a>
+<a href="#projects">Projects</a>
+<a href="#certifications">Certifications</a>
+<a href="#contact">Contact</a>
+</nav>
+</header>
+
+<section class="home" id="home">
+<div class="home-content">
+<h3>Hello, It's Me</h3>
+<h1>Elakkiya</h1>
+<h3>And I'm a <span>Software Developer</span></h3>
+<p>Aspiring Computer Science Engineer passionate about Web Development, Python Development and Data Analysis.</p>
+<div class="social-media">
+<a href="#"><i class='bx bxl-linkedin'></i></a>
+<a href="#"><i class='bx bxl-github'></i></a>
+</div>
+<a href="ELakkiya Subakumar (3).pdf" class="btn">Download CV</a>
+</div>
+<div class="home-img">
+<div class="glow"></div>
+<img src="C:\Users\MY PC\Documents\ai project\templates\image2\1765296181038.jpg.jpeg" alt="Profile">
+</div>
+</section>
+
+<section class="about" id="about">
+
+    <div class="about-img">
+        <div class="profile-circle">
+            <img src="C:\Users\MY PC\Documents\ai project\templates\image2\1765296181038.jpg.jpeg" alt="Profile">
+        </div>
+    </div>
+
+    <div class="about-content">
+        <h2>About <span>Me</span></h2>
+        <h3>AI & Full Stack Developer</h3>
+        <p>
+I am a passionate and motivated Full Stack Developer with a strong foundation in Python, Web Development, Data Analytics, and Artificial Intelligence. I enjoy building innovative and user-friendly applications that solve real-world problems. I am eager to contribute my technical skills, creativity, and continuous learning mindset to a dynamic organization.
+</p>
+    </div>
+
+</section>
+
+<section class="skills" id="skills">
+<h2 class="heading">My <span>Skills</span></h2>
+<div class="skills-container">
+
+<div class="technical">
+<h3>Technical Skills</h3>
+
+<div class="bar">HTML
+<div class="progress"><div style="width:90%"></div></div></div>
+
+<div class="bar">CSS
+<div class="progress"><div style="width:85%"></div></div></div>
+
+<div class="bar">Python
+<div class="progress"><div style="width:80%"></div></div></div>
+
+<div class="bar">Java
+<div class="progress"><div style="width:75%"></div></div></div>
+
+<div class="bar">SQL
+<div class="progress"><div style="width:80%"></div></div></div>
+
+<div class="bar">JavaScript
+<div class="progress"><div style="width:70%"></div></div></div>
+<div class="bar">power bi
+<div class="progress"><div style="width:80%"></div></div></div>
+<div class="bar">vs code
+<div class="progress"><div style="width:80%"></div></div></div>
+</div>
+
+<div class="professional">
+<h3>Professional Skills</h3>
+<div class="professional-circles">
+<div class="skill"><h4>85%</h4><p>Communication</p></div>
+<div class="skill"><h4>90%</h4><p>Teamwork</p></div>
+<div class="skill"><h4>80%</h4><p>Problem Solving</p></div>
+<div class="skill"><h4>85%</h4><p>Leadership</p></div>
+</div>
+</div>
+
+</div>
+</section>
+<section class="projects" id="projects">
+
+<h2 class="heading">My <span>Projects</span></h2>
+
+<div class="project-container">
+
+<!-- Project 1 -->
+<div class="project-card">
+
+<div class="project-gallery">
+<img src="C:\Users\MY PC\Documents\ai project\templates\image2\Resume start.png" alt="">
+<img src="C:\Users\MY PC\Documents\ai project\templates\image2\Resume result.png" alt="">
+</div>
+
+<h3>AI Resume Screening System</h3>
+
+<p>
+Developed an AI-powered Resume Screening System using Python, Flask, OCR and Machine Learning.
+The system automatically extracts resume content and evaluates candidates based on required skills.
+</p>
+
+<div class="tech-stack">
+<span>Python</span>
+<span>Flask</span>
+<span>Html</span>
+<span>Css</span>
+</div>
+
+</div>
+
+<!-- Project 2 -->
+<div class="project-card">
+
+<div class="project-gallery">
+<img src="C:\Users\MY PC\Documents\ai project\templates\image2\power bi.jpeg" alt="">
+<img src="C:\Users\MY PC\Documents\ai project\templates\image2\power 2.jpeg" alt="">
+</div>
+
+<h3>Healthcare Patient Readmission Risk Analytics</h3>
+
+<p>
+Developed a data analytics solution to identify patient readmission risks
+using healthcare datasets, enabling better clinical decision-making and
+improving patient care outcomes through predictive insights.
+</p>
+<div class="tech-stack">
+<span>Power BI</span>
+<span>Excel</span>
+<span>SQL</span>
+</div>
+
+
+
+</div>
+
+<!-- Project 3 -->
+<div class="project-card">
+
+<div class="project-gallery">
+<img src="C:\Users\MY PC\Documents\ai project\templates\image2\dashboard.png" alt="">
+<img src="C:\Users\MY PC\Documents\ai project\templates\image2\fakedata.png" alt="">
+</div>
+
+<h3>DNA Honey Authentication System</h3>
+
+<p>
+Designed a honey authentication system using DNA analysis and security
+techniques to ensure product purity and prevent adulteration.
+</p>
+
+<div class="tech-stack">
+<span>Python</span>
+<span>DNA Analysis</span>
+<span>Security</span>
+<span>Html</span>
+<span>Css</span>
+</div>
+
+</div>
+<!-- Project 4 -->
+<div class="project-card">
+<div class="project-gallery">
+<img src="C:\Users\MY PC\Documents\ai project\templates\image2\portfolio image.png" alt="">
+<img src="C:\Users\MY PC\Documents\ai project\templates\image2\portfolio 2.png" alt="">
+</div>
+<h3>Personal Portfolio Website</h3>
+<p>
+Developed a fully responsive personal portfolio website with modern UI,
+animations and project showcase using HTML, CSS and JavaScript.
+</p>
+
+<div class="tech-stack">
+<span>HTML</span>
+<span>CSS</span>
+<span>JavaScript</span>
+</div>
+
+
+
+</div>
+
+</div>
+
+</section>        
+<section class="certifications" id="certifications">
+    <h2 class="heading">My <span>Certifications</span></h2>
+
+    <div class="cert-container">
+
+        <div class="cert-box">
+            <img src="C:\Users\MY PC\Documents\ai project\templates\image2\8queens.jpeg" alt="Full Stack Web Development Certificate">
+            <h3>Full Stack Web Development</h3>
+            <p>8 Queens Software Technologies Pvt. Ltd.</p>
+        </div>
+
+        <div class="cert-box">
+            <img src="C:\Users\MY PC\Documents\ai project\templates\image2\ibm.jpeg" alt="IBM AI Certificate">
+            <h3>Artificial Intelligence Fundamentals</h3>
+            <p>IBM SkillsBuild</p>
+        </div>
+
+        <div class="cert-box">
+            <img src="C:\Users\MY PC\Documents\ai project\templates\image2\gb.jpeg" alt="Data Analytics Certificate">
+            <h3>Data Analytics</h3>
+            <p>GB Tech Corp</p>
+        </div>
+
+        <div class="cert-box">
+            <img src="C:\Users\MY PC\Documents\ai project\templates\image2\codebind.jpeg" alt="Web Development Certificate">
+            <h3>Web Development</h3>
+            <p>CodeBind Technologies</p>
+        </div>
+
+        <div class="cert-box">
+            <img src="C:\Users\MY PC\Documents\ai project\templates\image2\aws.jpeg" alt="AWS AI Practitioner Certificate">
+            <h3>AWS AI Practitioner</h3>
+            <p>Udemy / AIFCO Learning Center</p>
+        </div>
+
+    </div>
+</section>
+      
+ <section class="contact" id="contact">
+<h2 class="heading">Contact <span>Me</span></h2>
+
+<form id="contact-form">
+
+<input type="text" name="name" placeholder="Your Name" required>
+
+<input type="email" name="email" placeholder="Your Email" required>
+
+<textarea name="message" rows="6" placeholder="Your Message"></textarea>
+
+<button type="submit" class="btn">Send Message</button>
+
+</form>
+</section>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<script>
+emailjs.init("7Io5TBLW3JM74XyRk");
+
+document.getElementById("contact-form")
+.addEventListener("submit", function(event){
+
+event.preventDefault();
+
+emailjs.sendForm(
+'service_6ieh8ye',
+'template_n5h01jy',
+this
+)
+.then(function() {
+alert("Message Sent Successfully!");
+document.getElementById("contact-form").reset();
+})
+.catch(function(error) {
+alert("Failed to Send Message");
+console.log(error);
+});
+
+});
+</script>
+</body>
+</html>
