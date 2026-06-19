@@ -293,6 +293,140 @@ color:#00e5ff;
     padding:20px;
     background:#051129;
 }
+
+/* Project Popup */
+.project-modal{
+display:none;position:fixed;top:0;left:0;width:100%;height:100%;
+background:rgba(0,0,0,.9);z-index:9999;overflow:auto;padding:40px;
+}
+.project-modal-content{
+max-width:900px;margin:auto;background:#0d223d;padding:30px;border-radius:20px;color:white;
+}
+.close-modal{float:right;font-size:35px;cursor:pointer;color:#0ef;}
+
+img{
+max-width:100%;
+height:auto;
+}
+
+.home,.about{
+padding:140px 10% 80px;
+}
+
+.project-container{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:20px;
+}
+
+@media screen and (max-width:768px){
+
+body{
+overflow-x:hidden;
+}
+
+.header{
+padding:15px 5%;
+flex-direction:column;
+}
+
+.logo{
+font-size:24px;
+margin-bottom:10px;
+}
+
+.navbar{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:10px;
+}
+
+.navbar a{
+font-size:15px;
+margin-left:0;
+}
+
+.home,.about{
+flex-direction:column;
+text-align:center;
+padding:160px 5% 60px;
+gap:40px;
+}
+
+.home-content,.about-content{
+max-width:100%;
+}
+
+.home-content h1{
+font-size:38px;
+}
+
+.home-content h3,.about-content h3{
+font-size:22px;
+}
+
+.home-content p,.about-content p{
+font-size:15px;
+line-height:28px;
+}
+
+.home-img,.about-img{
+width:250px;
+height:250px;
+}
+
+.glow,.profile-circle{
+width:250px;
+height:250px;
+}
+
+.home-img img{
+width:220px;
+height:220px;
+}
+
+.skills,.projects,.certifications,.contact{
+padding:80px 5%;
+}
+
+.skills-container{
+flex-direction:column;
+}
+
+.technical,.professional{
+min-width:100%;
+}
+
+.project-container{
+grid-template-columns:1fr;
+}
+
+.project-gallery{
+grid-template-columns:1fr;
+}
+
+.project-gallery img{
+height:200px;
+}
+
+.cert-container{
+grid-template-columns:1fr;
+}
+
+.cert-box{
+min-height:auto;
+}
+
+.heading{
+font-size:34px;
+}
+
+.contact form{
+width:100%;
+}
+}
+
 </style>
 </head>
 <body>
@@ -569,6 +703,27 @@ console.log(error);
 });
 
 });
+
 </script>
+
+<div id="projectModal" class="project-modal">
+<div class="project-modal-content">
+<span class="close-modal" onclick="closeProject()">&times;</span>
+<h2 id="projectTitle">Project Details</h2>
+<p id="projectDesc"></p>
+</div>
+</div>
+
+<script>
+function openProject(title,desc){
+ document.getElementById('projectTitle').innerText=title;
+ document.getElementById('projectDesc').innerText=desc;
+ document.getElementById('projectModal').style.display='block';
+}
+function closeProject(){
+ document.getElementById('projectModal').style.display='none';
+}
+</script>
+
 </body>
 </html>
